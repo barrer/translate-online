@@ -8,10 +8,7 @@ import org.jsoup.select.Elements;
 import java.util.Iterator;
 
 public class YoudaoParser extends Parser {
-    @Override
-    protected String type() {
-        return "有道";
-    }
+    public static final String TYPE = "有道";
 
     @Override
     protected String link(String entry) {

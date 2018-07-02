@@ -17,10 +17,9 @@ public class Main {
                 command.append(" ");
             argFlag++;
         }
-        String type = getType(command);
-        String entry = getEntry(command);
-        if (type == null || entry == null)
-            entry = command.toString();// 非正文内调用
+        StringBuffer type = new StringBuffer();
+        StringBuffer entry = new StringBuffer();
+        initParam(command, type, entry);
 
         // 输出列表
         String style = "display:inline-block;" +
@@ -47,28 +46,21 @@ public class Main {
                 "</div>");
 
         // 输出正文
-        if (type != null && entry != null) {
-            System.out.println(Parser.get(type, entry));
+        if (type.length() > 0 && entry.length() > 0) {
+            System.out.println(Parser.get(type.toString(), entry.toString()));
         }
     }
 
     /**
-     * 得到类型
+     * 初始化参数
      */
-    private static String getType(StringBuffer command) {
+    private static void initParam(StringBuffer command, StringBuffer type, StringBuffer entry) {
         Matcher matcher = MatcherUtil.getMatcher("^type=(.*?)entry=(.*?)$", command.toString());
-        if (matcher.matches())
-            return MatcherUtil.getGroup(matcher, 1);
-        return null;
-    }
-
-    /**
-     * 得到entry
-     */
-    private static String getEntry(StringBuffer command) {
-        Matcher matcher = MatcherUtil.getMatcher("^type=(.*?)entry=(.*?)$", command.toString());
-        if (matcher.matches())
-            return MatcherUtil.getGroup(matcher, 2);
-        return null;
+        if (matcher.matches()) {
+            type.append(MatcherUtil.getGroup(matcher, 1));
+            entry.append(MatcherUtil.getGroup(matcher, 2));
+        }
+        if (type.length() == 0 || entry.length() == 0)
+            entry.append(command.toString());// 非正文内调用（首次调用）
     }
 }

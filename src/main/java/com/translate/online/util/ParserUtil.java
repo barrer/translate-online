@@ -6,6 +6,8 @@ import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -166,5 +168,15 @@ public class ParserUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * 异常转字符串
+     */
+    public static String exceptionToString(Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        return sw.toString();
     }
 }

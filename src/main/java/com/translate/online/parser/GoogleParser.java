@@ -5,10 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class GoogleParser extends Parser {
-    @Override
-    protected String type() {
-        return "谷歌";
-    }
+    public static final String TYPE = "谷歌";
 
     @Override
     protected String link(String entry) {

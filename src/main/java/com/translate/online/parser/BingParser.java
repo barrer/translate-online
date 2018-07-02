@@ -8,10 +8,7 @@ import org.jsoup.select.Elements;
 import java.util.Iterator;
 
 public class BingParser extends Parser {
-    @Override
-    protected String type() {
-        return "必应";
-    }
+    public static final String TYPE = "必应";
 
     @Override
     protected String link(String entry) {

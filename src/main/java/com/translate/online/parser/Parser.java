@@ -6,21 +6,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public abstract class Parser {
-    public static Map<String, Parser> entryParser = new LinkedHashMap<String, Parser>();
+    public static Map<String, Class> entryParser = new LinkedHashMap<String, Class>();
 
     static {
-        if (true) {
-            Parser parser = new BingParser();
-            entryParser.put(parser.type(), parser);
-        }
-        if (true) {
-            Parser parser = new YoudaoParser();
-            entryParser.put(parser.type(), parser);
-        }
-        if (true) {
-            Parser parser = new GoogleParser();
-            entryParser.put(parser.type(), parser);
-        }
+        entryParser.put(BingParser.TYPE, BingParser.class);
+        entryParser.put(YoudaoParser.TYPE, YoudaoParser.class);
+        entryParser.put(GoogleParser.TYPE, GoogleParser.class);
     }
 
     /**
@@ -28,16 +19,16 @@ public abstract class Parser {
      */
     public static String get(String type, String entry) {
         try {
-            return entryParser.get(type).parse(entry)
-                    + ParserUtil.wrapDiv("<a href=\"" + entryParser.get(type).link(entry) + "\">☞ 查看</a>");
+            Parser parser = (Parser) entryParser.get(type).newInstance();
+            return parser.parse(entry) + ParserUtil.wrapDiv("<a href=\"" + parser.link(entry) + "\">☞ 查看</a>");
         } catch (Exception e) {
-            e.printStackTrace();
-            return "parse error!";
+            return "parse error!" + "<br>"
+                    + "type: " + type + "<br>"
+                    + "entry: " + entry + "<br>"
+                    + ParserUtil.exceptionToString(e);
         }
 
     }
-
-    protected abstract String type();
 
     protected abstract String link(String entry);
 
