@@ -41,4 +41,5 @@ mvn clean compile package -Dmaven.test.skip=true
 ### release:
 version|hash(SHA1) `translate-online.jar`
 -------|----
+2.0|`80d5aa5e8f529827c329e34d22183497182af681`
 1.0|`80f648143f0410a679d9de4c83cccec7ddbf87b8`
