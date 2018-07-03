@@ -19,6 +19,11 @@ public class YoudaoParser extends Parser {
     protected String parse(String entry) throws Exception {
         String url = "https://dict.youdao.com/w/eng/" + entry;
         String html = ParserUtil.getUrl(url);
+        html = html.replaceAll("<script[\\s\\S]*?</script>", "")
+                .replaceAll("<style[\\s\\S]*?</style>", "")
+                .replaceAll("<meta[\\s\\S]*?/>", "")
+                .replaceAll("<link[\\s\\S]*?/>", "")
+                .replaceAll("<!--[\\s\\S]*?-->", "");
         StringBuffer sb = new StringBuffer();
         Document doc = ParserUtil.getNoPrettyDoc(html);
         // 词头

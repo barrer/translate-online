@@ -1,6 +1,5 @@
 ### Screenshot 屏幕截图：
-![Screenshot1](./document/Screenshot1.png)
-![Screenshot2](./document/Screenshot2.png)
+![Screenshot](./document/Screenshot.png)
 
 ### Java 安装：
 [https://java.com/download/](https://java.com/download/)

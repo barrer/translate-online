@@ -20,14 +20,12 @@ public abstract class Parser {
     public static String get(String type, String entry) {
         try {
             Parser parser = (Parser) entryParser.get(type).newInstance();
-            return parser.parse(entry) + ParserUtil.wrapDiv("<a href=\"" + parser.link(entry) + "\">☞ 查看</a>");
+            return ParserUtil.wrapDiv(parser.parse(entry)) +
+                    ParserUtil.wrapDiv(ParserUtil.wrapA(parser.link(entry), ParserUtil.style_translateOnlineSee, "☞ 查看"));
         } catch (Exception e) {
-            return "parse error!" + "<br>"
-                    + "type: " + type + "<br>"
-                    + "entry: " + entry + "<br>"
-                    + ParserUtil.exceptionToString(e);
+            return ParserUtil.wrapDiv(ParserUtil.style_translateOnlineError,
+                    "parse error!" + "<br>" + "type: " + type + "<br>" + "entry: " + entry + "<br>" + ParserUtil.exceptionToString(e));
         }
-
     }
 
     protected abstract String link(String entry);

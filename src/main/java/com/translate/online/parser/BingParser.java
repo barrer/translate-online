@@ -19,6 +19,11 @@ public class BingParser extends Parser {
     protected String parse(String entry) throws Exception {
         String url = "https://cn.bing.com/dict/search?q=" + entry;
         String html = ParserUtil.getUrl(url);
+        html = html.replaceAll("<script[\\s\\S]*?</script>", "")
+                .replaceAll("<style[\\s\\S]*?</style>", "")
+                .replaceAll("<meta[\\s\\S]*?/>", "")
+                .replaceAll("<link[\\s\\S]*?/>", "")
+                .replaceAll("<!--[\\s\\S]*?-->", "");
         StringBuffer sb = new StringBuffer();
         Document doc = ParserUtil.getNoPrettyDoc(html);
         // 词头
@@ -40,7 +45,7 @@ public class BingParser extends Parser {
         // 长句翻译
         Elements sentence = doc.select(".lf_area");
         if (sentence.html().indexOf("计算机翻译") != -1) {
-            Iterator<Element> sentenceIter = sentence.select("div>div[class^=\"p\"]").iterator();
+            Iterator<Element> sentenceIter = sentence.select(".p1-10,.p1-11").iterator();
             while (sentenceIter.hasNext()) {
                 Element ele = sentenceIter.next();
                 sb.append(ParserUtil.wrapDiv(ele.text()));

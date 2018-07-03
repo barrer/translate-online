@@ -17,7 +17,18 @@ public class ParserUtil {
      * 请求user-agent
      */
     private static final String DEFAULT_USER_AGENT =
-            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36";
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36";
+
+    private static final String style_wordWrap = "word-wrap:break-word!important;";
+    private static final String style_color = "color:#000;";
+    private static final String style_font = "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;";
+    private static final String style_fontSizeLineHeight = "font-size:100%;line-height:1.2em;";
+
+    public static final String style_translateBase = style_wordWrap + style_color + style_font + style_fontSizeLineHeight;
+    public static final String style_translateOnlineType = "display:inline-block;font-weight:bold;margin:.2em .3em;padding:1px 3px;background-color:#36c;border-radius:2px;color:#fff;font-size:90%;";
+    public static final String style_translateOnlineEntry = "font-style:italic;color:#f09;margin:.5em auto;display:inline-block;";
+    public static final String style_translateOnlineSee = "display:inline-block;margin-top:.5em;";
+    public static final String style_translateOnlineError = "background-color:#fc6;padding:.5em 1em;";
 
     /**
      * 根据url获取响应网页html
@@ -121,10 +132,10 @@ public class ParserUtil {
     }
 
     /**
-     * 包装div指定class
+     * 包装div指定style
      */
-    public static String wrapDiv(String className, String innerHtml) {
-        return "<div class=\"" + className + "\">" + innerHtml + "</div>";
+    public static String wrapDiv(String styleStr, String innerHtml) {
+        return "<div style=\"" + styleStr + "\">" + innerHtml + "</div>";
     }
 
     /**
@@ -135,10 +146,10 @@ public class ParserUtil {
     }
 
     /**
-     * 包装span指定class
+     * 包装span指定style
      */
-    public static String wrapSpan(String className, String innerHtml) {
-        return "<span class=\"" + className + "\">" + innerHtml + "</span>";
+    public static String wrapSpan(String styleStr, String innerHtml) {
+        return "<span style=\"" + styleStr + "\">" + innerHtml + "</span>";
     }
 
     /**
@@ -146,6 +157,20 @@ public class ParserUtil {
      */
     public static String wrapSpan(String innerHtml) {
         return "<span>" + innerHtml + "</span>";
+    }
+
+    /**
+     * 包装a指定style
+     */
+    public static String wrapA(String href, String styleStr, String innerHtml) {
+        return "<a style=\"" + styleStr + "\" href=\"" + href + "\">" + innerHtml + "</a>";
+    }
+
+    /**
+     * 包装a
+     */
+    public static String wrapA(String href, String innerHtml) {
+        return "<a href=\"" + href + "\">" + innerHtml + "</a>";
     }
 
     /**

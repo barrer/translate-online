@@ -21,34 +21,22 @@ public class Main {
         StringBuffer entry = new StringBuffer();
         initParam(command, type, entry);
 
+        StringBuffer out = new StringBuffer();
         // 输出列表
-        String style = "display:inline-block;" +
-                "font-weight:bold;" +
-                "line-height:120%;" +
-                "margin:.2em .3em;" +
-                "padding:1px 3px;" +
-                "background-color:#36c;" +
-                "border-radius:2px;" +
-                "color:#fff;" +
-                "font-size:90%;";
         StringBuffer parserHtml = new StringBuffer();
         for (String s : Parser.entryParser.keySet()) {
-            parserHtml.append("<a " +
-                    "style=\"" + style + "\"" +
-                    "href=\"type=" + s +
-                    "entry=" + entry + "\">" + s + "</a>");
+            parserHtml.append(ParserUtil.wrapA("type=" + s + "entry=" + entry, ParserUtil.style_translateOnlineType, s));
         }
-        System.out.println(ParserUtil.wrapDiv(parserHtml.toString()));
+        out.append(ParserUtil.wrapDiv(parserHtml.toString()));
 
         // 输出entry
-        System.out.println("<div>" +
-                "<a style=\"font-style:italic;color:#f09;\" href=\"" + entry + "\">" + entry + "</a>" +
-                "</div>");
+        out.append(ParserUtil.wrapDiv(ParserUtil.wrapA(entry.toString(), ParserUtil.style_translateOnlineEntry, entry.toString())));
 
         // 输出正文
         if (type.length() > 0 && entry.length() > 0) {
-            System.out.println(Parser.get(type.toString(), entry.toString()));
+            out.append(Parser.get(type.toString(), entry.toString()));
         }
+        System.out.println(ParserUtil.wrapDiv(ParserUtil.style_translateBase, out.toString()));
     }
 
     /**
