@@ -25,12 +25,13 @@ public class Main {
         // 输出列表
         StringBuffer parserHtml = new StringBuffer();
         for (String s : Parser.entryParser.keySet()) {
-            parserHtml.append(ParserUtil.wrapA("type=" + s + "entry=" + entry, ParserUtil.style_translateOnlineType, s));
+            if (type.length() > 0 && entry.length() > 0 && s.equals(type.toString()))// 选中
+                parserHtml.append(ParserUtil.wrapA(entry.toString(),
+                        ParserUtil.style_translateOnlineType + ParserUtil.style_translateOnlineTypeChecked, s));
+            else// 未选中
+                parserHtml.append(ParserUtil.wrapA("type=" + s + "entry=" + entry, ParserUtil.style_translateOnlineType, s));
         }
-        out.append(ParserUtil.wrapDiv(parserHtml.toString()));
-
-        // 输出entry
-        out.append(ParserUtil.wrapDiv(ParserUtil.wrapA(entry.toString(), ParserUtil.style_translateOnlineEntry, entry.toString())));
+        out.append(ParserUtil.wrapDiv(ParserUtil.style_translateOnlineTypeParent, parserHtml.toString()));
 
         // 输出正文
         if (type.length() > 0 && entry.length() > 0) {

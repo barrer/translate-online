@@ -25,9 +25,10 @@ public class ParserUtil {
     private static final String style_fontSizeLineHeight = "font-size:100%;line-height:1.2em;";
 
     public static final String style_translateBase = style_wordWrap + style_color + style_font + style_fontSizeLineHeight;
-    public static final String style_translateOnlineType = "display:inline-block;font-weight:bold;margin:.2em .3em;padding:1px 3px;background-color:#36c;border-radius:2px;color:#fff;font-size:90%;";
-    public static final String style_translateOnlineEntry = "font-style:italic;color:#f09;margin:.5em auto;display:inline-block;";
-    public static final String style_translateOnlineSee = "display:inline-block;margin-top:.5em;";
+    public static final String style_translateOnlineType = "display:inline-block;margin-right:.5em;padding:1px 3px;background-color:#eee;border-radius:2px;color:#000;font-size:90%;";
+    public static final String style_translateOnlineTypeChecked = "background-color:#36c;color:#fff;";
+    public static final String style_translateOnlineTypeParent = "margin-bottom:1em;";
+    public static final String style_translateOnlineSee = "display:inline-block;margin-top:.2em;";
     public static final String style_translateOnlineError = "background-color:#fc6;padding:.5em 1em;";
 
     /**

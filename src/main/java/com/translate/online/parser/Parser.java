@@ -12,6 +12,7 @@ public abstract class Parser {
         entryParser.put(BingParser.TYPE, BingParser.class);
         entryParser.put(YoudaoParser.TYPE, YoudaoParser.class);
         entryParser.put(GoogleParser.TYPE, GoogleParser.class);
+        entryParser.put(IcibaParser.TYPE, IcibaParser.class);
     }
 
     /**
@@ -21,7 +22,7 @@ public abstract class Parser {
         try {
             Parser parser = (Parser) entryParser.get(type).newInstance();
             return ParserUtil.wrapDiv(parser.parse(entry)) +
-                    ParserUtil.wrapDiv(ParserUtil.wrapA(parser.link(entry), ParserUtil.style_translateOnlineSee, "☞ 查看"));
+                    ParserUtil.wrapDiv(ParserUtil.wrapA(parser.link(entry), ParserUtil.style_translateOnlineSee, "☞"));
         } catch (Exception e) {
             return ParserUtil.wrapDiv(ParserUtil.style_translateOnlineError,
                     "parse error!" + "<br>" + "type: " + type + "<br>" + "entry: " + entry + "<br>" + ParserUtil.exceptionToString(e));
