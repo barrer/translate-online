@@ -25,6 +25,10 @@ public class Main {
         // 输出列表
         StringBuffer parserHtml = new StringBuffer();
         for (String s : Parser.entryParser.keySet()) {
+            if (s.equals(Parser.LINE_BREAK)) {// 换行
+                parserHtml.append(ParserUtil.wrapDiv(ParserUtil.style_translateOnlineTypeBreak, ""));
+                continue;
+            }
             if (type.length() > 0 && entry.length() > 0 && s.equals(type.toString()))// 选中
                 parserHtml.append(ParserUtil.wrapA(entry.toString(),
                         ParserUtil.style_translateOnlineType + ParserUtil.style_translateOnlineTypeChecked, s));

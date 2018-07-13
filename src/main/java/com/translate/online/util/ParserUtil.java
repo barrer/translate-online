@@ -22,11 +22,12 @@ public class ParserUtil {
     private static final String style_wordWrap = "word-wrap:break-word!important;";
     private static final String style_color = "color:#000;";
     private static final String style_font = "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;";
-    private static final String style_fontSizeLineHeight = "font-size:100%;line-height:1.2em;";
+    private static final String style_fontSizeLineHeight = "font-size:100%;line-height:1.3em;";
 
     public static final String style_translateBase = style_wordWrap + style_color + style_font + style_fontSizeLineHeight;
     public static final String style_translateOnlineType = "display:inline-block;margin-right:.5em;padding:1px 3px;background-color:#eee;border-radius:2px;color:#000;font-size:90%;";
     public static final String style_translateOnlineTypeChecked = "background-color:#36c;color:#fff;";
+    public static final String style_translateOnlineTypeBreak = "padding:.2em;";
     public static final String style_translateOnlineTypeParent = "margin-bottom:1em;";
     public static final String style_translateOnlineSee = "display:inline-block;margin-top:.2em;";
     public static final String style_translateOnlineError = "background-color:#fc6;padding:.5em 1em;";
