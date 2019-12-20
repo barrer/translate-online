@@ -16,7 +16,7 @@ key|value
 Enabled|✓
 Type|Html
 Name|Translate Online
-Command Line|java -jar C:\translate-online.jar %GDWORD%
+Command Line|java -Dfile.encoding=UTF-8 -jar C:\translate-online.jar %GDWORD%
 Icon|C:\translate-online.png
 
 ### Tampermonkey 相关内容：
